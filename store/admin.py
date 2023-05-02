@@ -6,11 +6,11 @@ from .models.orders import Order
 
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['name', 'price', 'category']
+    list_display = ['title', 'price_detail_amount', 'category']
 
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['name']
+    list_display = ['title']
 
 # Register your models here.
 admin.site.register(Products,AdminProduct)
