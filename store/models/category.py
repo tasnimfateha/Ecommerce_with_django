@@ -1,7 +1,7 @@
 from django.db import models
 
 class Category(models.Model):
-    rating = models.FloatField(default=0)  # Use FloatField instead of IntegerField
+    rating = models.FloatField(default=0)
     name = models.CharField(max_length=50, blank=True)
 
     @staticmethod
@@ -25,7 +25,7 @@ class Category(models.Model):
         rating = float(self.rating)
         for start, end, name in rating_ranges:
             if start <= rating <= end:
-                if self.name != name:  # check if the name has already been set
+                if self.name != name:  # to check if the name has already been set
                     self.name = name
-                    self.save()  # save the category
+                    self.save()  # to save the category
                 break
