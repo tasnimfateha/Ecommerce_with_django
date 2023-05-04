@@ -16,14 +16,6 @@
     nav{
       background-color: green;
     }
-    .one-edge-shadow {
-              box-shadow: 0 8px 2px -5px rgb(246, 245, 245);
-}
-.display-8{
-  font-weight: 200;
-  font-size: 30px;
-  font-colour: $teal-200;
-}
   </style>
 </head>
 
@@ -35,13 +27,18 @@
   sticky-top navbar 
   navbar-expand-lg
   text-white">
-    <a class="navbar-brand ms-3 text-dark " href="/">
 
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/store">Store <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/store">Learning with Django <span class="sr-only">(current)</span></a>
+        </li>
+          <li class="nav-item active">
+          <form action="{% url 'product_search' %}" method="GET">
+    <div class="form-group">
+        <input type="text" class="form-control" name="q" placeholder="Search products">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
         </li>
 
           </ul>
@@ -53,6 +50,8 @@
             <span class="badge badge-success">{{request.session.cart.keys|length}}</span>
             <span class="sr-only">(current)</span></a>
         </li>
+
+
 
         {% if request.session.customer %}
         <li class="nav-item active ">
@@ -73,9 +72,6 @@
 
 
       </ul>
-
-
-    </div>
   </nav>
   <!---->
   {% block content %}{% endblock %}

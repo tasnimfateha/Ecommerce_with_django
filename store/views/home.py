@@ -51,4 +51,10 @@ def store(request):
     print('you are : ', request.session.get('email'))
     return render(request, 'index.html', data)
 
-
+def product_search(request):
+    query = request.GET.get('q')
+    if query:
+        products = Products.objects.filter(title__icontains=query)
+    else:
+        products = Products.objects.all()
+    return render(request, 'index.html', {'products': products})
