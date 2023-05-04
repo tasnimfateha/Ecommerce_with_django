@@ -27,5 +27,5 @@ class Category(models.Model):
             if start <= rating <= end:
                 if self.name != name:  # to check if the name has already been set
                     self.name = name
-                    self.save()  # to save the category
-                break
+                    break
+        super().save()
