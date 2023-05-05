@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2 class="mb-3">Welcome {{ customer.first_name }} {{ customer.last_name }}</h2>
+
+    <div class="card mb-4">
+      <div class="card-body">
+        <h4 class="card-title">Your Profile</h4>
+        <p class="card-text"><strong>Name:</strong> {{ customer.first_name }} {{ customer.last_name }}</p>
+        <p class="card-text"><strong>Email:</strong> {{ customer.email }}</p>
+        <p class="card-text"><strong>Phone:</strong> {{ customer.phone }}</p>
+      </div>
+    </div>
+
+    <h3 class="mb-3">Your Orders:</h3>
+
+    {% if orders %}
+      <div class="table-responsive mb-4">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>Order Date</th>
+              <th>Product Name</th>
+              <th>Price</th>
+              <th>Delivery Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.date }}</td>
+                <td>{{ order.product.title }}</td>
+                <td>{{ order.price }}</td>
+                <td>{{ order.address }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p>You have no orders.</p>
+    {% endif %}
+  </div>
+{% endblock %}

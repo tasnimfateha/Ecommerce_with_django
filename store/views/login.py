@@ -19,7 +19,12 @@ class Login(View):
         if customer:
             flag = check_password (password, customer.password)
             if flag:
-                request.session['customer'] = customer.id
+                request.session['customer'] = customer.id  # set customer ID in session
+                if customer.is_superuser:
+                    request.session['is_superuser'] = True
+                    print("Superuser logged in successfully")
+                else:
+                    print("Regular user logged in successfully")
 
                 if Login.return_url:
                     return HttpResponseRedirect (Login.return_url)
@@ -27,12 +32,14 @@ class Login(View):
                     Login.return_url = None
                     return redirect ('homepage')
             else:
-                error_message = 'Invalid !!'
+                error_message = 'Invalid password!!'
         else:
-            error_message = 'Invalid !!'
+            error_message = 'Invalid email!!'
 
-        print (email, password)
+        print("Invalid login attempt with email:", email, "and password:", password)
         return render (request, 'login.html', {'error': error_message})
+
+
 
 def logout(request):
     request.session.clear()

@@ -6,6 +6,8 @@ class Customer(models.Model):
     phone = models.CharField(max_length=10)
     email=models.EmailField()
     password = models.CharField(max_length=100)
+    is_superuser = models.BooleanField(default=False)
+
 
     #to save the data
     def register(self):
